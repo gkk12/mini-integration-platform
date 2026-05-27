@@ -1,0 +1,22 @@
+# Dependency directories
+node_modules/
+**/node_modules/
+
+# Build outputs
+dist/
+**/dist/
+
+# Local lint/test caches
+.eslintcache
+.sonar/
+
+# Terraform state and caches
+.terraform/
+*.tfstate
+*.tfstate.backup
+.terraform.lock.hcl
+dummy.zip
+
+# OS files
+.DS_Store
+Thumbs.db

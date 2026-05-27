@@ -1,0 +1,22 @@
+{
+  "name": "customer-service",
+  "version": "1.0.0",
+  "main": "dist/lambda.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "local": "ts-node src/server.ts"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.600.0",
+    "@aws-sdk/lib-dynamodb": "^3.600.0",
+    "@codegenie/serverless-express": "^4.14.1",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.11.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}
