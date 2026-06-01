@@ -16,6 +16,7 @@ dist/
 *.tfstate.backup
 .terraform.lock.hcl
 dummy.zip
+*.zip
 
 # OS files
 .DS_Store
