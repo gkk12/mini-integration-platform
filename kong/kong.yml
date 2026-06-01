@@ -1,0 +1,28 @@
+_format_version: "3.0"
+_transform: true
+
+services:
+  - name: customer-service
+    url: http://customer-service:3000
+    routes:
+      - name: customer-route
+        paths:
+          - /customers
+        strip_path: false
+  - name: order-service
+    url: http://order-service:3000
+    routes:
+      - name: order-route
+        paths:
+          - /orders
+        strip_path: false
+
+plugins:
+  # Global Request Logging
+  - name: file-log
+    config:
+      path: /dev/stdout
+  - name: rate-limiting
+    config:
+      minute: 5
+      policy: local

@@ -1,0 +1,13 @@
+{
+  "name": "mini-integration-platform-root",
+  "scripts": {
+    "lint": "eslint 'services/**/*.ts'",
+    "build-all": "cd services/customer-service && npm run build && cd ../order-service && npm run build",
+    "package-aws": "npm run build-all && cd services/customer-service && zip -r ../../terraform/customer-service.zip dist node_modules && cd ../order-service && zip -r ../../terraform/order-service.zip dist node_modules"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "@typescript-eslint/parser": "^6.19.0",
+    "@typescript-eslint/eslint-plugin": "^6.19.0"
+  }
+}

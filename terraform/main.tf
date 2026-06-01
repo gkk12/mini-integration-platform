@@ -73,7 +73,7 @@ data "archive_file" "dummy" {
 
 # 4. Lambda Functions
 resource "aws_lambda_function" "customer_service" {
-  filename         = data.archive_file.dummy.output_path
+  filename         = "${path.module}/customer-service.zip"
   function_name    = "customer-service"
   role             = aws_iam_role.lambda_role.arn
   handler          = "dist/lambda.handler"
@@ -82,12 +82,13 @@ resource "aws_lambda_function" "customer_service" {
   environment {
     variables = {
       DYNAMODB_TABLE = aws_dynamodb_table.customers.name
+      MOCK_MODE      = "false"
     }
   }
 }
 
 resource "aws_lambda_function" "order_service" {
-  filename         = data.archive_file.dummy.output_path
+  filename         = "${path.module}/order-service.zip"
   function_name    = "order-service"
   role             = aws_iam_role.lambda_role.arn
   handler          = "dist/lambda.handler"
@@ -95,6 +96,7 @@ resource "aws_lambda_function" "order_service" {
 
   environment {
     variables = {
+      # Dynamically inject the live API Gateway endpoint
       CUSTOMER_SERVICE_URL = aws_apigatewayv2_api.http_api.api_endpoint
     }
   }
